@@ -14,12 +14,30 @@ module.exports.executeTest = function (data, success, error) {
         case 'BDD':
             executeBDD(data);
             break;
+            case 'headless':
+                executeHeadles(data);
+                break;
         default:
             console.log('NO EJECUCION');
     }
     success('executeTest');
 
 };
+
+/**
+ * 
+ * @param {*} info 
+ */
+function executeHeadles(info) {
+    console.log('executeHeadles...');
+    var args = {        
+        headers: { "Content-Type": "application/json" }
+    };
+    client.get("http://localhost:8004/test/cypress", args, function (response) {        
+        console.log("WORKER CYPRESS RESP: ", response);
+    });
+
+}
 
 /**
  * 
@@ -32,7 +50,7 @@ function executeBDD(info) {
         data: {
             app: info.aplication,
             code: info.code,
-            path_project: "/Users/leonardovalbuena/Documents/workspaceUniandes/pruebasAut/Android_worker"
+            path_project: "/Users/leonardovalbuena/Documents/workspaceUniandes/pruebasAut/proyecto/Android_worker"
         },
         headers: { "Content-Type": "application/json" }
     };
@@ -54,7 +72,7 @@ function executeRandom(info) {
             app: info.aplication,
             number: info.numberExecution,
             code: info.code,
-            path_project: "/Users/leonardovalbuena/Documents/workspaceUniandes/pruebasAut/Android_worker"
+            path_project: "/Users/leonardovalbuena/Documents/workspaceUniandes/pruebasAut/proyecto/Android_worker"
         },
         headers: { "Content-Type": "application/json" }
     };

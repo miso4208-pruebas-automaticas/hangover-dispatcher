@@ -11,7 +11,7 @@ module.exports.getReport = function (data, success, error) {
     console.log('getReport...');
 
     var nameFile = data.code + '_' + data.aplication + '.txt';
-    var basePath = 'file:///Users/leonardovalbuena/Documents/workspaceUniandes/pruebasAut/Android_worker/reports/'; 
+    var basePath = 'file:///Users/leonardovalbuena/Documents/workspaceUniandes/pruebasAut/proyecto/Android_worker/reports/'; 
     var file = '';
     
     if (data.subType === 'random') {
@@ -32,7 +32,8 @@ function readTextFile(file) {
     rawFile.onreadystatechange = function () {
         if (rawFile.readyState === 4) {
             if (rawFile.status === 200 || rawFile.status == 0) {
-                allText = rawFile.responseText;
+                allText = rawFile.responseText.replace(/\n/g, "<br>"); ;
+                
                 console.log(allText);
                 return allText;
             }
