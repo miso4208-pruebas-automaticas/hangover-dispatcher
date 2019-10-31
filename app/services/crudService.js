@@ -12,7 +12,8 @@ module.exports.getLevels = function (data, success, error) {
 };
 
 module.exports.getApplications = function (data, success, error) {
-    let query = "SELECT * FROM `APPLICATIONS` ORDER BY name ASC";
+    let query = "SELECT * FROM `APPLICATIONS` app inner join `APPLICATIONS_TYPE` at on app.id_application=at.id_application  ORDER BY app.name ASC";
+    console.log(query);
     db.query(query, (err, result) => {
         if (err) throw error;
         success(result);
