@@ -1,10 +1,34 @@
 'use strict'
 
+module.exports.getTypes = function (data, success, error) {
+    let query = "SELECT * FROM `TYPES` ORDER BY name ASC";
+    db.query(query, (err, result) => {
+        if (err) throw error;        
+        success(result);
+    });
+};
+
+module.exports.createTypes = function (data, success, error) {
+    let query = "INSERT INTO `hangover`.`TYPES` (`name`, `description`) VALUES ('" + data.name + "', '" + data.description + "');";
+    db.query(query, (err, result) => {
+        if (err) throw error;        
+        success(result);
+    });
+};
+
 /**
  * Consulta los niveles de pruebas en la base de datos
  */
 module.exports.getLevels = function (data, success, error) {
     let query = "SELECT * FROM `LEVELS` ORDER BY name ASC";
+    db.query(query, (err, result) => {
+        if (err) throw error;        
+        success(result);
+    });
+};
+
+module.exports.createLevel = function (data, success, error) {
+    let query = "INSERT INTO `hangover`.`LEVELS` (`name`, `description`) VALUES ('" + data.name + "', '" + data.description + "');";
     db.query(query, (err, result) => {
         if (err) throw error;        
         success(result);
