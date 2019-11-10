@@ -3,7 +3,7 @@ var express = require('express')
 var executeService = require('../services/executeService.js');
 var reportsService = require('../services/reportsService');
 var crudService = require('../services/crudService');
-
+var sqs = require('../../worker-sqs/sqs.js')
 var router = express.Router();
 
 
@@ -18,8 +18,8 @@ router.get('/health', function (req, res) {
 router.post('/test', function (req, res) {
     console.log('execute test: ', JSON.stringify(req.body));
 
-    executeService.executeTest(req.body, function (apps) {
-
+    //executeService.executeTest(req.body, function (apps) {
+    sqs.sendQueue(req.body, function (apps) {
         crudService.saveExecuteTest(req.body, function (result) {
         }, function (err) {
             res.statusCode = 404;
