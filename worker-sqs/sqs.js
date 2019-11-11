@@ -2,7 +2,7 @@ var AWS = require('aws-sdk');
 
 AWS.config.update({region:'us-east-1',  
 accessKeyId:process.env.ACCES_KEY_ID_SQS,
-secretAccessKey:process.env.SECRET_ACCESS_KEY_SQS,});
+secretAccessKey:process.env.SECRET_ACCESS_KEY_SQS});
 var sqs = new AWS.SQS({apiVersion: '2012-11-05'});
 
 module.exports.sendQueue = function(payload, success, error) {  
@@ -17,6 +17,9 @@ var sqsURL;
     case 'headless':
         sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-cypress-queue.fifo';
             break;
+    case 'MOCKARO':
+          sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-cypress-mockaro.fifo';
+          break;
     default:
         console.log('NO EJECUCION');
 }
