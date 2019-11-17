@@ -1,25 +1,28 @@
 var AWS = require('aws-sdk');
 
-AWS.config.update({region:'us-east-1',  
+AWS.config.update({region:'us-east-1',
 accessKeyId:process.env.ACCES_KEY_ID_SQS,
 secretAccessKey:process.env.SECRET_ACCESS_KEY_SQS});
 var sqs = new AWS.SQS({apiVersion: '2012-11-05'});
 
-module.exports.sendQueue = function(payload, success, error) {  
+module.exports.sendQueue = function(payload, success, error) {
 var sqsURL;
   switch (payload.subType) {
     case 'random':
         sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-random-queue.fifo';
         break;
     case 'BDD':
-      sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-calabash-queue.fifo';
+        sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-calabash-queue.fifo';
         break;
     case 'headless':
         sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-cypress-queue.fifo';
-            break;
+        break;
     case 'MOCKARO':
           sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-cypress-mockaro.fifo';
           break;
+    //case 'cucumber':
+      //    sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-cypress.fifo';
+      //    break;
     default:
         console.log('NO EJECUCION');
 }
@@ -29,7 +32,7 @@ var params = {
     MessageBody: JSON.stringify(payload),
     QueueUrl: sqsURL
   };
-  
+
   sqs.sendMessage(params, function(err, data) {
     if (err) {
       console.log("Error", err);

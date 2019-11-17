@@ -14,9 +14,9 @@ module.exports.executeTest = function (data, success, error) {
         case 'BDD':
             executeBDD(data);
             break;
-            case 'headless':
-                executeHeadles(data);
-                break;
+        case 'headless':
+            executeHeadless(data);
+            break;
         default:
             console.log('NO EJECUCION');
     }
@@ -25,23 +25,23 @@ module.exports.executeTest = function (data, success, error) {
 };
 
 /**
- * 
- * @param {*} info 
+ *
+ * @param {*} info
  */
-function executeHeadles(info) {
+function executeHeadless(info) {
     console.log('executeHeadles...');
-    var args = {        
+    var args = {
         headers: { "Content-Type": "application/json" }
     };
-    client.get("http://localhost:8004/test/cypress", args, function (response) {        
+    client.get("http://localhost:8004/test/cypress", args, function (response) {
         console.log("WORKER CYPRESS RESP: ", response);
     });
 
 }
 
 /**
- * 
- * @param {*} info 
+ *
+ * @param {*} info
  */
 function executeBDD(info) {
     console.log('executeBDD...');
@@ -63,7 +63,7 @@ function executeBDD(info) {
 }
 
 /**
- * 
+ *
  */
 function executeRandom(info) {
     console.log('executeRandom...');
@@ -83,4 +83,3 @@ function executeRandom(info) {
         console.log("WORKER RESP: ", response);
     });
 }
-
