@@ -20,7 +20,7 @@ var sqsURL;
     case 'MOCKARO':
           sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-cypress-mockaro.fifo';
           break;
-    //case 'cucumber':
+    case 'cucumber':
       //    sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-cypress.fifo';
       //    break;
     default:
