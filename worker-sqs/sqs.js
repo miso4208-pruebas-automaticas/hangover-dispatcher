@@ -21,8 +21,8 @@ var sqsURL;
           sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-cypress-mockaro.fifo';
           break;
     case 'cucumber':
-      //    sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-cypress.fifo';
-      //    break;
+          sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-cucumber-queue.fifo';
+          break;
     default:
         console.log('NO EJECUCION');
 }
