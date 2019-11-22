@@ -1,6 +1,27 @@
 'use strict'
 
-module.exports.getTypes = function (data, success, error) {
+
+module.exports.getStatus = function (data, success, error) {
+    console.log("Codigo consulta:", data);
+    let query = "select * from `EXECUTION_TESTS` WHERE `code`='" + data + "';";
+    db.query(query, (err, result) => {
+        if (err) throw error;        
+        success(result);
+    });
+};
+
+
+
+module.exports.getExecutionTest = function (data, success, error) {    
+    let query = "SELECT * FROM `EXECUTION_TESTS`";
+    db.query(query, (err, result) => {
+        if (err) throw error;        
+        success(result);
+    });
+};
+
+
+module.exports.getTypes = function (data, success, error) {    
     let query = "SELECT * FROM `TYPES` ORDER BY name ASC";
     db.query(query, (err, result) => {
         if (err) throw error;        

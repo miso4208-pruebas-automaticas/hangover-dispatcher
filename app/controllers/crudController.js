@@ -4,6 +4,32 @@ var crudService = require('../services/crudService.js');
 
 var router = express.Router();
 
+
+router.get('/status/:code', function (req, res) {    
+    crudService.getStatus(req.params.code, function (result) {
+        console.log("response:", result[0].status);
+        res.statusCode = 200;
+        res.send(result[0].status);
+
+    }, function (err) {
+        res.statusCode = 404;
+        res.send(err);
+    })
+});
+
+
+router.get('/execution-test', function (req, res) {
+    crudService.getExecutionTest(req, function (result) {
+        res.statusCode = 200;
+        res.send({ executions: result });
+
+    }, function (err) {
+        res.statusCode = 404;
+        res.send(err);
+    })
+});
+
+
 router.get('/types', function (req, res) {
     crudService.getTypes(req, function (result) {
         res.statusCode = 200;
