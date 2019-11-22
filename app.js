@@ -7,7 +7,8 @@ const db = mysql.createConnection ({
   host: 'hangover.cxelmrn7jq89.eu-west-1.rds.amazonaws.com',
   user: 'admin',
   password: 'admin2019',
-  database: 'hangover'
+  database: 'hangover',
+  port:3306
 });
 
 db.connect((err) => {
