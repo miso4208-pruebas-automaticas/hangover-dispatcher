@@ -26,6 +26,7 @@ var sqsURL;
     default:
         console.log('NO EJECUCION');
 }
+console.log("COLA A EJECUTAR: ", sqsURL);
 var params = {
     MessageGroupId: payload.subType,
     MessageDeduplicationId: payload.code,
