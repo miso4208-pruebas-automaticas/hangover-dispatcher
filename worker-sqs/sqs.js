@@ -23,6 +23,9 @@ var sqsURL;
     case 'cucumber':
           sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-cucumber-queue.fifo';
           break;
+    case 'vrt':
+      sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-vrt-queue.fifo';
+      break;
     default:
         console.log('NO EJECUCION');
 }
