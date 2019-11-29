@@ -26,6 +26,9 @@ var sqsURL;
     case 'vrt':
       sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-vrt-queue.fifo';
       break;
+    case 'andrMutation':
+      sqsURL='https://sqs.us-east-1.amazonaws.com/669213563582/worker-andrMutation-queue.fifo';
+      break;
     default:
         console.log('NO EJECUCION');
 }
